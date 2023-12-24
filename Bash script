@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ -z "$1" ];then
+		echo "You forgot the IP Address"
+		echo "Here is the right syntax: ./ipsweep.sh 192.168.57"
+else
+		for n in $(seq 1 254);do
+				ping -c 1 $1.$n | grep "64 bytes" | cut -d " " -f 4 | tr -d ":" &
+    done
+fi
